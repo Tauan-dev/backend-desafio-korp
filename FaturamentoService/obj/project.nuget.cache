@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "czvODfII3X8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Tauan Neres\\Documents\\Projetos\\Desafio\\backend desafio korp\\FaturamentoService\\FaturamentoService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tauan Neres\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "C:\\Users\\Tauan Neres\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
