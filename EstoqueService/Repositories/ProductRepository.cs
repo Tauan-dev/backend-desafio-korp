@@ -48,6 +48,12 @@ namespace EstoqueService.Repositories
             return existingProduct;
         }
 
+        public async Task<bool> DeleteAsync(Product product)
+        {
+            _context.Products.Remove(product);
+            return await SaveAsync();
+        }
+
         public async Task<bool> SaveAsync()
         {
             return await _context.SaveChangesAsync() > 0;

@@ -14,9 +14,6 @@ namespace EstoqueService.DTOs
         public const int MaxStock = 10000;
         public const string StockError = "O estoque não pode exceder 10.000 unidades.";
 
-        public const int MaxDecimalPrecision = 2;
-        public const string PriceError = "O preço deve ser um número positivo com até 2 casas decimais.";
-
         public const double MinPrice = 0.01;
         public const string MinPriceError = "O preço deve ser maior que zero.";
 

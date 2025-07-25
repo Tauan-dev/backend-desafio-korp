@@ -12,6 +12,8 @@ namespace EstoqueService.Repositories
         Task<Product?> GetProductByIdAsync(Guid id);
         Task<Product> CreateAsync(Product product);
         Task<Product?> UpdateAsync(Product product);
+        Task<bool> DeleteAsync(Product product);
+
         Task<bool> SaveAsync();
     }
 }
