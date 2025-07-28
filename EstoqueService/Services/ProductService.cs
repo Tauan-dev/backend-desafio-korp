@@ -62,6 +62,22 @@ namespace EstoqueService.Services
             await _productRepository.DeleteAsync(productEntity);
             return true;
         }
+        public async Task<bool> DecreaseStockAsync(Guid id, int quantity)
+        {
+            var product = await _productRepository.GetProductByIdAsync(id)
+                ?? throw new KeyNotFoundException($"Produto com ID {id} não encontrado.");
+
+            if (product.Stock < quantity)
+            {
+                throw new InvalidOperationException("Estoque insuficiente.");
+            }
+
+            product.Stock -= quantity;
+            await _productRepository.UpdateAsync(product);
+
+            return true;
+        }
+
 
     }
 }

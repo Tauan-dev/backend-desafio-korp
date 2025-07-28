@@ -12,13 +12,21 @@ namespace FaturamentoService.Mapping
     {
         public MappingProfile()
         {
+
             CreateMap<Invoice, InvoiceDto>();
+            CreateMap<InvoiceProduct, InvoiceProductDto>();
+
+
             CreateMap<CreateInvoiceDto, Invoice>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.Status, opt => opt.Ignore()) // status pode ser setado no service
-                .ForMember(dest => dest.Products, opt => opt.Ignore()); // produtos são tratados separadamente
+                .ForMember(dest => dest.Status, opt => opt.Ignore())
+                .ForMember(dest => dest.FiscalNumber, opt => opt.MapFrom(src => src.FiscalNumber))
+                .ForMember(dest => dest.Products, opt => opt.Ignore());
 
-            CreateMap<InvoiceProduct, InvoiceProductDto>();
+            CreateMap<CreateInvoiceProductDto, InvoiceProduct>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.InvoiceId, opt => opt.Ignore());
         }
     }
+
 }

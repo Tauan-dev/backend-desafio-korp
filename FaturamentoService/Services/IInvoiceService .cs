@@ -12,6 +12,8 @@ namespace FaturamentoService.Services
         Task<InvoiceDto?> GetByIdAsync(Guid id);
         Task<InvoiceDto> CreateAsync(CreateInvoiceDto invoiceDto);
         Task<InvoiceDto?> UpdateAsync(Guid id, CreateInvoiceDto invoiceDto);
+        Task<bool> CloseInvoiceAsync(Guid id);
+
 
     }
 }

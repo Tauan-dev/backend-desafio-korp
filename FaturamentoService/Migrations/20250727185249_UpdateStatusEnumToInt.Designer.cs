@@ -4,6 +4,7 @@ using FaturamentoService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FaturamentoService.Migrations
 {
     [DbContext(typeof(FaturamentoDbContext))]
-    partial class FaturamentoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250727185249_UpdateStatusEnumToInt")]
+    partial class UpdateStatusEnumToInt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

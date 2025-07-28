@@ -117,6 +117,30 @@ namespace EstoqueService.Controllers
             }
         }
 
+        [HttpPost("{id}/decrease-stock")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> DecreaseStock(Guid id, [FromBody] DecreaseStockRequest request)
+        {
+            try
+            {
+                await _productService.DecreaseStockAsync(id, request.Quantity);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    StatusCode = 500,
+                    Message = "Erro interno do servidor.",
+                    Detail = ex.Message
+                });
+            }
+        }
+
+
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

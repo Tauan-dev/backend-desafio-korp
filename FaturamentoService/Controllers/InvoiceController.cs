@@ -161,5 +161,50 @@ namespace FaturamentoService.Controllers
                 });
             }
         }
+        [HttpPut("{id}/close")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> CloseInvoice(Guid id)
+        {
+            try
+            {
+                var success = await _invoiceService.CloseInvoiceAsync(id);
+
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        StatusCode = 400,
+                        Message = "A nota fiscal já está fechada."
+                    });
+                }
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    Message = "Nota fiscal fechada com sucesso."
+                });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new
+                {
+                    StatusCode = 404,
+                    Message = ex.Message
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    StatusCode = 500,
+                    Message = "Erro ao fechar nota fiscal.",
+                    Detail = ex.Message
+                });
+            }
+        }
+
     }
 }

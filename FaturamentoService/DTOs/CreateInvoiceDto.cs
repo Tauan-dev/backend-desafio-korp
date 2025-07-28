@@ -10,7 +10,7 @@ namespace FaturamentoService.DTOs
     {
         [Required(ErrorMessage = "O número da nota fiscal é obrigatório.")]
         [RegularExpression(ValidationRules.InvoiceNumberRegex, ErrorMessage = ValidationRules.InvoiceNumberError)]
-        public string Number { get; set; } = string.Empty;
+        public string FiscalNumber { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "A nota fiscal deve conter ao menos um produto.")]
         public List<CreateInvoiceProductDto> Products { get; set; } = new();

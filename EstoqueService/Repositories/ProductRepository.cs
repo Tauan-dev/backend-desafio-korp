@@ -37,16 +37,19 @@ namespace EstoqueService.Repositories
 
         public async Task<Product?> UpdateAsync(Product product)
         {
+            Console.WriteLine($"[DEBUG] Atualizando produto: {product.Id}, novo estoque: {product.Stock}");
+
             var existingProduct = await GetProductByIdAsync(product.Id);
             if (existingProduct == null) return null;
 
-            existingProduct.Name = product.Name;
-            existingProduct.Price = product.Price;
             existingProduct.Stock = product.Stock;
 
-            await SaveAsync();
+            var success = await SaveAsync();
+
             return existingProduct;
         }
+
+
 
         public async Task<bool> DeleteAsync(Product product)
         {
@@ -56,8 +59,10 @@ namespace EstoqueService.Repositories
 
         public async Task<bool> SaveAsync()
         {
-            return await _context.SaveChangesAsync() > 0;
+            var changes = await _context.SaveChangesAsync();
+            return changes > 0;
         }
+
 
     }
 }
